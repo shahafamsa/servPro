@@ -1,0 +1,1176 @@
+<!DOCTYPE>
+<html ng-app="myApp" lang="he" dir="rtl">
+	 <meta  charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+	<title>regestration form</title>
+	<script>
+	function disable(idtemp) {
+    	document.getElementById(idtemp).disabled=true;
+    	document.getElementById(idtemp).value="";
+	}
+    function enable(idtemp) {
+    	document.getElementById(idtemp).disabled=false;
+	}
+    function blo(idtemp,b1,b2) {
+	    var x =document.getElementById(idtemp).checked;
+	    if (x==true)
+	    {
+	    	document.getElementById(b1).disabled=false;
+	    	document.getElementById(b2).disabled=false;
+	    }
+	    else
+	    {
+	    	document.getElementById(b1).disabled=true;
+	    	document.getElementById(b1).value="";
+	    	document.getElementById(b2).disabled=true;
+	    	document.getElementById(b2).value="";
+	    }
+	}
+	function checkdate(year){
+		var x = document.getElementById(year).value;
+		var y = new date();
+		if(y.getFullYear() - x < 18)
+		{
+
+		}
+	}
+	</script>
+	<head>
+	<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init("user_w17aUMc4snW6fk2JrXzHE");
+   })();
+</script>
+</head>
+<body align="right">
+	<div class="container" ng-controller="AppCtrl">
+<form name="myForm">
+    <h1>תבנית רישום לנותן שירות!</h1>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>&nbsp;</th>
+				<th>&nbsp;</th>
+				<th>&nbsp;</th>
+				<th>&nbsp;</th>
+			</tr>
+		</thead>
+		<thead>
+			<tr>
+				<td>
+       			 מספר טלפון: 
+				</td>
+					<td><input type="phone" name="phone1" maxlength="10" pattern="\d{10}" class="form-control" ng-model="employee.phone1" required></td>
+				<td><span ng-show="myForm.phone1.$touched && myForm.phone1.$invalid"><font color="red">נא הכנס מספר טלפון.</span></td>
+			</tr>
+			<tr>
+				<td><button class="btn btn-primary" ng-click="">המשך</button></td>
+			</tr>
+			<tr>
+				<td>
+   					שפה:
+				</td>
+				<td>	    <div>
+						        <select class="form-control" id="sell" name="lang" ng-model="employee.lang" required>
+						            <option> עברית</option>
+						            <option>רוסית </option>
+						            <option>אנגלית</option>
+						            <option>ערבית</option>
+						        </select>
+				</div></td>
+			<td><span ng-show="myForm.lang.$touched && myForm.lang.$invalid"><font color="red">נא הכנס שפה.</span></td>
+			</tr>
+			<tr>
+				<td>
+     				תעודת זהות: 
+				</td>
+				<td><input type="phone" name="id" maxlength="9" pattern="\d{9}" class="form-control" ng-model="employee.id" required></td>
+				<td><span ng-show="myForm.id.$touched && myForm.id.$invalid"><font color="red">נא הכנס תעודת זהות.</span></td>
+			</tr>
+			<tr>
+				<td>
+					שם פרטי:
+				</td>
+				<td> <input class="form-control" name="fname" ng-model="employee.fname" required></td>
+				<td><span ng-show="myForm.fname.$touched && myForm.fname.$invalid"><font color="red">נא הכנס שם פרטי.</span></td>
+			</tr>
+			<tr>
+				<td>
+					שם משפחה:  
+				</td>
+				<td> <input class="form-control" name="lname" ng-model="employee.lname" required></td>
+				<td><span ng-show="myForm.lname.$touched && myForm.lname.$invalid"><font color="red">נא הכנס שם משפחה.</span></td>
+			</tr>
+				<tr>
+				<td>
+                תאריך לידה:   
+				</td>
+				<td><input type="date" name="bday" class="form-control" ng-model="employee.bday" required></td>
+			<td><span ng-show="myForm.bday.$touched && myForm.bday.$invalid"><font color="red">נא הכנס תאריך לידה (מעל 18).</span></td>
+			</tr>
+			<tr>
+				<td>
+                מין:
+				</td>
+				<td><input type="radio" name="gender" value="זכר" checked ng-model="employee.gender" ng-checked="true"> זכר</td>
+				<td><input type="radio" name="gender" value="נקבה" ng-model="employee.gender"> נקבה</td>
+			</tr>
+			<tr>
+				<td>
+       			 מספר טלפון: 
+				</td>
+					<td><input type="phone" name="phone12" maxlength="10" pattern="\d{10}" class="form-control" value="{{employee.phone1}}" required></td>
+			</tr>
+			<td>
+          		  טלפון נוסף: 
+				</td>
+					<td><input type="text" name="phone2" maxlength="10" pattern="\d{10}" class="form-control" ng-model="employee.phone2"></td></td>
+			</tr>
+			<tr>
+				<td>
+    			    דוא"ל:    
+				</td>
+				<td><input type="email" name="email" class="form-control"  ng-model="employee.email" required></td>
+				<td><span ng-show="myForm.email.$touched && myForm.email.$invalid"><font color="red">נא הכנס דואר אלקטרוני.</span></td>
+			</tr>
+						<tr>
+				<td>
+			  	  רחוב: 
+				</td>
+				<td><input name="street" class="form-control" ng-model="employee.street" required></td>
+				<td><span ng-show="myForm.street.$touched && myForm.street.$invalid"><font color="red">נא הכנס כתובת.</span></td>
+			</tr>
+			<tr>
+				<td>
+  				  מספר בית: 
+				</td>
+				<td><input type="number" name="homenum" class="form-control" ng-model="employee.homenum" required></td>
+				<td><span ng-show="myForm.homenum.$touched && myForm.homenum.$invalid"><font color="red">נא הכנס מספר בית.</span></td>
+			</tr>
+			<tr>
+				<td>
+  				  מספר דירה:  
+				</td>
+				<td><input type="number" name="appartnum" class="form-control" ng-model="employee.appartnum"></td>
+			</tr>
+			<tr>
+				<td>
+    				כניסה:  
+				</td>
+				<td><input class="form-control" name="homenter" ng-model="employee.homenter"></td>
+			</tr>
+				<tr>
+				<td>
+   					 יישוב: 
+				</td>
+				<td>	    <div>
+						        <select class="form-control" ng-click="getin()" id="sell2" name="city" ng-model="employee.city" required >
+						        </select>
+						        </div></td>
+			<td><span ng-show="myForm.city.$touched && myForm.city.$invalid"><font color="red">נא הכנס יישוב.</span></td>
+			</tr>
+			<tr>
+				<td>
+      				  מיקוד:  
+				</td>
+				<td><input type="number" name="zipcode" class="form-control" ng-model="employee.zipcode"></td>
+				<td><button class="btn btn-primary" ng-click="">מצא מיקוד</button></td>
+			</tr>
+			<tr>
+				<td><button class="btn btn-primary" ng-click="">המשך</button></td>
+			</tr>
+			<tr>
+				<td>
+					שם העוסק / שם החברה:  
+				</td>
+				<td><input class="form-control" name="companame" ng-model="employee.companame" required></td>
+				<td><span ng-show="myForm.companame.$touched && myForm.companame.$invalid"><font color="red">נא הכנס שם עוסק /החברה.</span></td>
+			</tr>
+			<tr>
+				<td>
+     				מספר ח.פ / מספר עוסק: 
+				</td>
+				<td><input type="number" name="companum" class="form-control" ng-model="employee.companum" required></td>
+				<td><span ng-show="myForm.companum.$touched && myForm.companum.$invalid"><font color="red">נא הכנס מספר ח.פ. / עוסק.</span></td>
+			</tr>
+			<tr>
+				<td><button class="btn btn-primary" ng-click="">נקיון</button></td>
+				<td><button class="btn btn-primary" ng-click="">כביסה</button></td>
+				<td><button class="btn btn-primary" ng-click="">משלוחים</button></td>
+				<td><button class="btn btn-primary" ng-click="">תחזוקה</button></td>
+				<td><button class="btn btn-primary" ng-click="">שיפוצים</button></td>
+				<td><button class="btn btn-primary" ng-click="">הובלות</button></td>
+			</tr>
+						<tr>
+				<td>
+                קטגוריית על:
+				</td>
+				<td>	    <div>
+						        <select class="form-control" name="catname" id="sell" ng-model="employee.catname">
+						            <option> אום אל-פחם </option>
+						            <option> אופקים </option>
+						            <option> אור יהודה </option>
+						            <option> אור עקיבא </option>
+						            <option> אילת </option>
+						            <option> אלעד </option>
+						            <option> אריאל </option>
+						            <option> שפרעם </option>
+						        </select>
+						        </div></td>
+			</tr>
+			<tr>
+				<td>
+                תחומי התמחות (קטגוריית משנה):
+				</td>
+				<td>	    <div>
+						        <select class="form-control" id="sell" name="seccatnme" ng-model="employee.seccatnme">
+						            <option> אום אל-פחם </option>
+						            <option> אופקים </option>
+						            <option> אור יהודה </option>
+						            <option> אור עקיבא </option>
+						            <option> אילת </option>
+						            <option> אלעד </option>
+						            <option> אריאל </option>
+						            <option> שפרעם </option>
+						        </select>
+						        </div></td>
+			</tr>
+			<tr>
+				<td>
+                סוגי עבודה:
+				</td>
+				<td>	    <div>
+						        <select class="form-control" id="sell" name="worktype" ng-model="employee.worktype">
+						            <option> אום אל-פחם </option>
+						            <option> אופקים </option>
+						            <option> אור יהודה </option>
+						            <option> אור עקיבא </option>
+						            <option> אילת </option>
+						            <option> אלעד </option>
+						            <option> אריאל </option>
+						            <option> שפרעם </option>
+						        </select>
+						        </div></td>
+			</tr>
+			<tr>
+				<td><button class="btn btn-primary" ng-click="">המשך</button></td>
+			</tr>
+			<tr>
+				<td>
+               		 שנות ותק:
+				</td>
+				<td><input type="number" name="vetek" class="form-control" ng-model="employee.vetek"></td>
+			</tr>
+			<tr>
+				<td>
+                תעודה מקצועית:  
+				</td>
+				<td>
+				<input type="radio" name="certified" value="yes" ng-model="employee.certified" onclick="enable('cert')"> כן, שם התעודה המקצועית:</td>
+				<td> 
+				<input id="cert"  name="certi" class="form-control" ng-model="employee.certi" ng-disabled="true" ></td>
+				<td>
+				<input type="radio" name="certified" value="no" ng-model="employee.certified" ng-checked="true" onclick="disable('cert')"> לא 
+			</tr>
+
+			<tr>
+				<td>
+                אזורי עבודה:
+				</td>
+				<td>	    <div>
+						        <select class="form-control" name="workarea" id="sell" ng-model="employee.workarea">
+						            <option> אום אל-פחם </option>
+						            <option> אופקים </option>
+						            <option> אור יהודה </option>
+						            <option> אור עקיבא </option>
+						            <option> אילת </option>
+						            <option> אלעד </option>
+						            <option> אריאל </option>
+						            <option> שפרעם </option>
+						        </select>
+						        </div></td>
+			</tr>
+			<tr>
+				<td>
+                רדיוס עבודה (בק"מ):  
+				</td>
+				<td>  <select class="form-control" name="workradius" id="sel1" ng-model="employee.workradius">
+                    <option> 5 </option>
+                    <option> 10 </option>
+                    <option> 15 </option>
+                    <option> 20 </option>
+                    <option> 25 </option>
+                    <option> 30 </option>
+                    <option> 35 </option>
+                    <option> 40 </option>
+                    <option> 45 </option>
+                    <option> 50 </option>
+                    <option> 55 </option>
+                    <option> 60 </option>
+                    <option> 60 ומעלה </option>
+                </select> </td>
+			</tr>
+			<tr>
+				<td>
+                זמני עבודה:
+				</td>
+				<td>
+				<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">הוסף</button>
+					  <div id="demo" class="collapse">
+					  	<table>
+			<tr>
+	<td><input type="checkbox" name="day1" value="sunday" ng-model="employee.day1" ng-checked="false">ראשון  </td>
+	<td>שעת התחלה:</td>
+			<td><select id="sunstart1" ng-model="employee.sunstart1">
+                    <option value="01:00">01:00</option>
+                    <option value="02:00">02:00</option>
+                    <option value="03:00">03:00</option>
+                    <option value="04:00">04:00</option>
+                    <option value="05:00">05:00</option>
+                    <option value="06:00">06:00</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                    <option value="23:00">23:00</option>
+                    <option value="24:00">24:00</option>
+                </select></td>
+                <td>שעת סיום:  </td>
+                <td><select id="sunend1" ng-model="employee.sunend1">
+                    <option value="01:00">01:00</option>
+                    <option value="02:00">02:00</option>
+                    <option value="03:00">03:00</option>
+                    <option value="04:00">04:00</option>
+                    <option value="05:00">05:00</option>
+                    <option value="06:00">06:00</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                    <option value="23:00">23:00</option>
+                    <option value="24:00">24:00</option>
+                </select>
+                  </td>
+	<td>שעת התחלה:  </td>
+			<td><select id="sunstart2" ng-model="employee.sunstart2">
+                    <option value="01:00">01:00</option>
+                    <option value="02:00">02:00</option>
+                    <option value="03:00">03:00</option>
+                    <option value="04:00">04:00</option>
+                    <option value="05:00">05:00</option>
+                    <option value="06:00">06:00</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                    <option value="23:00">23:00</option>
+                    <option value="24:00">24:00</option>
+                </select></td>
+                <td>שעת סיום:  </td>
+                <td><select id="sunend2" ng-model="employee.sunend2">
+                    <option value="01:00">01:00</option>
+                    <option value="02:00">02:00</option>
+                    <option value="03:00">03:00</option>
+                    <option value="04:00">04:00</option>
+                    <option value="05:00">05:00</option>
+                    <option value="06:00">06:00</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                    <option value="23:00">23:00</option>
+                    <option value="24:00">24:00</option>
+                </select>
+                  </td>
+			</tr>
+			<tr>
+<td><input type="checkbox"  id="day2" name="day2" value="monday" ng-checked="false" ng-model="employee.day2" >שני  </td>
+	<td>שעת התחלה:  </td>
+			<td><select id="monstart1" ng-model="employee.monstart1">
+                    <option value="01:00">01:00</option>
+                    <option value="02:00">02:00</option>
+                    <option value="03:00">03:00</option>
+                    <option value="04:00">04:00</option>
+                    <option value="05:00">05:00</option>
+                    <option value="06:00">06:00</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                    <option value="23:00">23:00</option>
+                    <option value="24:00">24:00</option>
+                </select></td>
+                <td>שעת סיום:  </td>
+                <td><select id="monend1" ng-model="employee.monend1">
+                    <option value="01:00">01:00</option>
+                    <option value="02:00">02:00</option>
+                    <option value="03:00">03:00</option>
+                    <option value="04:00">04:00</option>
+                    <option value="05:00">05:00</option>
+                    <option value="06:00">06:00</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                    <option value="23:00">23:00</option>
+                    <option value="24:00">24:00</option>
+                </select>
+                  </td>
+	<td>שעת התחלה:  </td>
+			<td><select id="monstart2" ng-model="employee.monstart2">
+                    <option value="01:00">01:00</option>
+                    <option value="02:00">02:00</option>
+                    <option value="03:00">03:00</option>
+                    <option value="04:00">04:00</option>
+                    <option value="05:00">05:00</option>
+                    <option value="06:00">06:00</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                    <option value="23:00">23:00</option>
+                    <option value="24:00">24:00</option>
+                </select></td>
+                <td>שעת סיום:  </td>
+                <td><select id="monend2" ng-model="employee.monend2">
+                    <option value="01:00">01:00</option>
+                    <option value="02:00">02:00</option>
+                    <option value="03:00">03:00</option>
+                    <option value="04:00">04:00</option>
+                    <option value="05:00">05:00</option>
+                    <option value="06:00">06:00</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                    <option value="23:00">23:00</option>
+                    <option value="24:00">24:00</option>
+                </select>
+                  </td>
+			</tr>
+<tr>
+	<td><input type="checkbox"  id="day3" name="day3" value="tuesday" ng-checked="false" ng-model="employee.day3" >שלישי  
+	
+	<td>שעת התחלה:  </td>
+			<td><select id="tuestart1" ng-model="employee.tuestart1">
+                    <option value="01:00">01:00</option>
+                    <option value="02:00">02:00</option>
+                    <option value="03:00">03:00</option>
+                    <option value="04:00">04:00</option>
+                    <option value="05:00">05:00</option>
+                    <option value="06:00">06:00</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                    <option value="23:00">23:00</option>
+                    <option value="24:00">24:00</option>
+                </select></td>
+                <td>שעת סיום:  </td>
+                <td><select id="tueend1" ng-model="employee.tueend1">
+                    <option value="01:00">01:00</option>
+                    <option value="02:00">02:00</option>
+                    <option value="03:00">03:00</option>
+                    <option value="04:00">04:00</option>
+                    <option value="05:00">05:00</option>
+                    <option value="06:00">06:00</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                    <option value="23:00">23:00</option>
+                    <option value="24:00">24:00</option>
+                </select>
+                  </td>
+	<td>שעת התחלה:  </td>
+			<td><select id="tuestart2" ng-model="employee.tuestart2">
+                    <option value="01:00">01:00</option>
+                    <option value="02:00">02:00</option>
+                    <option value="03:00">03:00</option>
+                    <option value="04:00">04:00</option>
+                    <option value="05:00">05:00</option>
+                    <option value="06:00">06:00</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                    <option value="23:00">23:00</option>
+                    <option value="24:00">24:00</option>
+                </select></td>
+                <td>שעת סיום:  </td>
+                <td><select id="tueend2" ng-model="employee.tueend2">
+                    <option value="01:00">01:00</option>
+                    <option value="02:00">02:00</option>
+                    <option value="03:00">03:00</option>
+                    <option value="04:00">04:00</option>
+                    <option value="05:00">05:00</option>
+                    <option value="06:00">06:00</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                    <option value="23:00">23:00</option>
+                    <option value="24:00">24:00</option>
+                </select>
+                  </td>
+			</tr>
+			<tr>
+<td><input type="checkbox"  id="day4" name="day4" value="wednesday" ng-checked="false" ng-model="employee.day4" >רביעי  </td>
+	<td>שעת התחלה:  </td>
+			<td><select id="wedstart1" ng-model="employee.wedstart1">
+                    <option value="01:00">01:00</option>
+                    <option value="02:00">02:00</option>
+                    <option value="03:00">03:00</option>
+                    <option value="04:00">04:00</option>
+                    <option value="05:00">05:00</option>
+                    <option value="06:00">06:00</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                    <option value="23:00">23:00</option>
+                    <option value="24:00">24:00</option>
+                </select></td>
+                <td>שעת סיום:  </td>
+                <td><select id="wedend1" ng-model="employee.wedend1">
+                    <option value="01:00">01:00</option>
+                    <option value="02:00">02:00</option>
+                    <option value="03:00">03:00</option>
+                    <option value="04:00">04:00</option>
+                    <option value="05:00">05:00</option>
+                    <option value="06:00">06:00</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                    <option value="23:00">23:00</option>
+                    <option value="24:00">24:00</option>
+                </select>
+                  </td>
+	<td>שעת התחלה:  </td>
+			<td><select id="wedstart2" ng-model="employee.wedstart2">
+                    <option value="01:00">01:00</option>
+                    <option value="02:00">02:00</option>
+                    <option value="03:00">03:00</option>
+                    <option value="04:00">04:00</option>
+                    <option value="05:00">05:00</option>
+                    <option value="06:00">06:00</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                    <option value="23:00">23:00</option>
+                    <option value="24:00">24:00</option>
+                </select></td>
+                <td>שעת סיום:  </td>
+                <td><select id="wedend2" ng-model="employee.wedend2">
+                    <option value="01:00">01:00</option>
+                    <option value="02:00">02:00</option>
+                    <option value="03:00">03:00</option>
+                    <option value="04:00">04:00</option>
+                    <option value="05:00">05:00</option>
+                    <option value="06:00">06:00</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                    <option value="23:00">23:00</option>
+                    <option value="24:00">24:00</option>
+                </select>
+                  </td>
+			</tr>
+<tr>
+	<td><input type="checkbox"  id="day5" name="day5" value="thursday" ng-checked="false" ng-model="employee.day5" >חמישי  
+		
+	<td>שעת התחלה:  </td>
+			<td><select id="thurstart1" ng-model="employee.thurstart1">
+                    <option value="01:00">01:00</option>
+                    <option value="02:00">02:00</option>
+                    <option value="03:00">03:00</option>
+                    <option value="04:00">04:00</option>
+                    <option value="05:00">05:00</option>
+                    <option value="06:00">06:00</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                    <option value="23:00">23:00</option>
+                    <option value="24:00">24:00</option>
+                </select></td>
+                <td>שעת סיום:  </td>
+                <td><select id="thurend1" ng-model="employee.thurend1">
+                    <option value="01:00">01:00</option>
+                    <option value="02:00">02:00</option>
+                    <option value="03:00">03:00</option>
+                    <option value="04:00">04:00</option>
+                    <option value="05:00">05:00</option>
+                    <option value="06:00">06:00</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                    <option value="23:00">23:00</option>
+                    <option value="24:00">24:00</option>
+                </select>
+                  </td>
+	<td>שעת התחלה:  </td>
+			<td><select id="thurstart2" ng-model="employee.thurstart2">
+                    <option value="01:00">01:00</option>
+                    <option value="02:00">02:00</option>
+                    <option value="03:00">03:00</option>
+                    <option value="04:00">04:00</option>
+                    <option value="05:00">05:00</option>
+                    <option value="06:00">06:00</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                    <option value="23:00">23:00</option>
+                    <option value="24:00">24:00</option>
+                </select></td>
+                <td>שעת סיום:  </td>
+                <td><select id="thurend2" ng-model="employee.thurend2">
+                    <option value="01:00">01:00</option>
+                    <option value="02:00">02:00</option>
+                    <option value="03:00">03:00</option>
+                    <option value="04:00">04:00</option>
+                    <option value="05:00">05:00</option>
+                    <option value="06:00">06:00</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                    <option value="23:00">23:00</option>
+                    <option value="24:00">24:00</option>
+                </select>
+                  </td>
+			</tr>
+			<tr>
+<td><input type="checkbox"  id="day6" name="day6" value="friday" ng-checked="false" ng-model="employee.day6" >שישי</td>
+	<td>שעת התחלה:  </td>
+			<td><select id="fristart1" ng-model="employee.fristart1">
+                    <option value="01:00">01:00</option>
+                    <option value="02:00">02:00</option>
+                    <option value="03:00">03:00</option>
+                    <option value="04:00">04:00</option>
+                    <option value="05:00">05:00</option>
+                    <option value="06:00">06:00</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                    <option value="23:00">23:00</option>
+                    <option value="24:00">24:00</option>
+                </select></td>
+                <td>שעת סיום:  </td>
+                <td><select id="friend1" ng-model="employee.friend1">
+                    <option value="01:00">01:00</option>
+                    <option value="02:00">02:00</option>
+                    <option value="03:00">03:00</option>
+                    <option value="04:00">04:00</option>
+                    <option value="05:00">05:00</option>
+                    <option value="06:00">06:00</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                    <option value="23:00">23:00</option>
+                    <option value="24:00">24:00</option>
+                </select>
+                  </td>
+	<td>שעת התחלה:  </td>
+			<td><select id="fristart2" ng-model="employee.fristart2">
+                    <option value="01:00">01:00</option>
+                    <option value="02:00">02:00</option>
+                    <option value="03:00">03:00</option>
+                    <option value="04:00">04:00</option>
+                    <option value="05:00">05:00</option>
+                    <option value="06:00">06:00</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                    <option value="23:00">23:00</option>
+                    <option value="24:00">24:00</option>
+                </select></td>
+                <td>שעת סיום:  </td>
+                <td><select id="friend2" ng-model="employee.friend2">
+                    <option value="01:00">01:00</option>
+                    <option value="02:00">02:00</option>
+                    <option value="03:00">03:00</option>
+                    <option value="04:00">04:00</option>
+                    <option value="05:00">05:00</option>
+                    <option value="06:00">06:00</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                    <option value="23:00">23:00</option>
+                    <option value="24:00">24:00</option>
+                </select>
+                  </td>
+			</tr>
+<tr>
+	<td><input type="checkbox"  id="day7" name="day7" value="saturday" ng-checked="false" ng-model="employee.day7" >שבת  
+	<td>שעת התחלה:  </td>
+			<td><select id="sattart1" ng-model="employee.sattart1">
+                    <option value="01:00">01:00</option>
+                    <option value="02:00">02:00</option>
+                    <option value="03:00">03:00</option>
+                    <option value="04:00">04:00</option>
+                    <option value="05:00">05:00</option>
+                    <option value="06:00">06:00</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                    <option value="23:00">23:00</option>
+                    <option value="24:00">24:00</option>
+                </select></td>
+                <td>שעת סיום:  </td>
+                <td><select id="satend1" ng-model="employee.satend1">
+                    <option value="01:00">01:00</option>
+                    <option value="02:00">02:00</option>
+                    <option value="03:00">03:00</option>
+                    <option value="04:00">04:00</option>
+                    <option value="05:00">05:00</option>
+                    <option value="06:00">06:00</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                    <option value="23:00">23:00</option>
+                    <option value="24:00">24:00</option>
+                </select>
+                  </td>
+                  	<td>שעת התחלה:  </td>
+			<td><select id="satstart2" ng-model="employee.satstart2">
+                    <option value="01:00">01:00</option>
+                    <option value="02:00">02:00</option>
+                    <option value="03:00">03:00</option>
+                    <option value="04:00">04:00</option>
+                    <option value="05:00">05:00</option>
+                    <option value="06:00">06:00</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                    <option value="23:00">23:00</option>
+                    <option value="24:00">24:00</option>
+                </select></td>
+                <td>שעת סיום:  </td>
+                <td><select id="satend2" ng-model="employee.satend2">
+                    <option value="01:00">01:00</option>
+                    <option value="02:00">02:00</option>
+                    <option value="03:00">03:00</option>
+                    <option value="04:00">04:00</option>
+                    <option value="05:00">05:00</option>
+                    <option value="06:00">06:00</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                    <option value="22:00">22:00</option>
+                    <option value="23:00">23:00</option>
+                    <option value="24:00">24:00</option>
+                </select>
+                  </td>
+			</tr>
+              </tr>			
+			<tr><input type="checkbox"  id="day8" name="day8" value="always" ng-checked="false" ng-model="employee.day8" >24/7</td></tr></table></div>
+
+		</tr>
+			<tr>
+				<td>
+                רכב עבודה:  
+				</td>
+				<td><input type="radio" name="withcar" value="yes" checked ng-model="employee.withcar"> כן</td>
+				<td><input type="radio" name="withcar" value="no" ng-model="employee.withcar" ng-checked="true"> לא</td>
+			</tr>
+			<tr>
+				<td>
+                שותפים / עוזרים:  
+				</td>
+				<td><input type="radio" name="assos" value="yes" checked ng-model="employee.assos"> כן</td>
+				<td><input type="radio" name="assos" value="no" ng-model="employee.assos" ng-checked="true"> לא</td>
+			</tr>
+			<tr>
+				<td>
+                האם אתה קשור בהסכם לחברה מסחרית כלשהי או למשווק מורשה? 
+				</td>
+				<td><input type="radio" name="conect" value="yes" checked ng-model="employee.conect" onclick="enable('con')"> כן, פרט:</td>
+				<td> 
+					<input id="con" class="form-control" name="cony" ng-model="employee.cony" ng-disabled="true" ></td>
+				<td>
+					<input type="radio" name="conect" value="no" ng-model="employee.conect" ng-checked="true" onclick="enable('con')"> לא  </td>
+			</tr>
+			<tr>
+				<td>
+               הערות\סיכום השיחה:  
+				</td>
+				<td><textarea class="form-control" rows="5" name="comment" id="comment" ng-model="employee.comment"></textarea></td>
+			</tr>
+			<script type="text/javascript">
+			  function send() {
+			    var link = 'mailto:email@example.com?subject=Message from '
+			             +document.getElementById('email').value
+			             +'&body='+document.getElementById('email').value;
+			    window.location.href = link;
+			}
+			</script>
+			<tr>
+				<td><button class="btn btn-primary" ng-click="addservpro()" ng-click="send()">שלח פרטים</button></td>
+				<td><button class="btn btn-info" ng-click= "deselect()">נקה</button></td>
+			</tr>
+
+		</thead>
+	</table>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.1/angular.min.js"></script>
+	<script src="controllers/controller.js"></script>
+	</form>
+</body>
+</html>
